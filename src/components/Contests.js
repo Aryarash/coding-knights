@@ -6,8 +6,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 export class Contest extends Component {
 
-  
-
   static defaultProps = {
     category : 'all'
   }
