@@ -33,17 +33,26 @@ export class Contest extends Component {
   }
 
   render() {
+    let sitenames = {
+      "codeforces":"CodeForces",
+      "leet_code":"LeetCode",
+      "code_chef":"CodeChef",
+      "at_coder":"AtCoder",
+      "hacker_rank":"HackerRank",
+      "hacker_earth":"HackerEarth",
+      "top_coder":"TopCoder"
+    }
     return (
       <div>
         <Router>
           <div className='container'>
-            <h2 className='text-center' style={{margin:'90px'}}>{`Contests - Latest ${this.props.category==='all'?'':this.capitalise(this.props.category)} Coding Contests`}</h2>
+            <h2 className='text-center' style={{margin:'90px'}}>{`Contests - Latest ${this.props.category==='all'?'':sitenames[this.props.category]} Coding Contests`}</h2>
             {this.state.loading && <Loading/>}
-            {!this.state.loading && !this.state.contests.length && <p className='text-center '>{`Currently ${this.props.category==='all'?'':this.capitalise(this.props.category)} Contests are Unavailable`}</p>}
+            {!this.state.loading && !this.state.contests.length && <p className='text-center '>{`Currently ${this.props.category==='all'?'':sitenames[this.props.category]} Contests are Unavailable`}</p>}
             <div className="row">
               {!this.state.loading && this.state.contests.map((element) => {
                 return <div className="col-md-4" key={element.name}>
-                  <ContestItems contesturl={element.url} category={this.props.category} title={this.props.category==='all'?element.site:this.props.category} description={element.name} sdate={element.start_time} edate={element.end_time}/>
+                  <ContestItems contesturl={element.url} category={this.props.category} title={this.props.category==='all'?element.site:sitenames[this.props.category]} description={element.name} sdate={element.start_time} edate={element.end_time}/>
                 </div>
               })}
             </div>
